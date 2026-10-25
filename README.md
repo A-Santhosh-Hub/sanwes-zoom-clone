@@ -31,7 +31,7 @@ You need **Node.js 20.6 or newer** (the LTS from <https://nodejs.org>). Nothing 
 
 ### Any system (Windows / Linux)
 ```bash
-git clone https://github.com/YOUR-GITHUB-USERNAME/sanwes-zoom-clone.git
+git clone https://github.com/A-Santhosh-Hub/sanwes-zoom-clone.git
 cd sanwes-zoom-clone
 npm start
 ```
