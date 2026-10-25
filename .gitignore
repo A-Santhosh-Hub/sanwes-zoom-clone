@@ -1,0 +1,35 @@
+# ---- secrets and things that belong to ONE computer: never commit these
+.env
+.env.*
+!.env.example
+livekit.yaml
+data/
+uploads/
+public-link.txt
+*.pem
+*.key
+*.pfx
+*.p12
+
+# ---- downloaded or built on your computer (setup / build scripts make them)
+node_modules/
+bin/
+client/dist/
+desktop/dist/
+desktop/stage/
+desktop/stage-viewer/
+desktop/node_modules/
+*.exe
+*.dll
+*.msi
+*.zip
+*.7z
+
+# ---- logs, backups, editors, operating system
+*.log
+*.bak
+*.tmp
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

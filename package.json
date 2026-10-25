@@ -1,0 +1,54 @@
+{
+  "name": "sanwes-zoom-clone",
+  "version": "0.7.0",
+  "private": true,
+  "type": "module",
+  "description": "Self-hosted Zoom clone and Zoom alternative (WebRTC + LiveKit): meetings, screen share, polls, breakout rooms, recording, class automation, and a Game Hub where viewers can play your game with keyboard, gamepad or a phone touch controller.",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "start": "node scripts/setup.mjs && node scripts/run.mjs --open",
+    "launch": "node scripts/run.mjs",
+    "media": "node scripts/run.mjs media",
+    "server": "node --env-file=.env server/index.js",
+    "build": "npm run build --prefix client",
+    "dev:client": "npm run dev --prefix client",
+    "check": "node scripts/check.mjs"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "http-proxy": "^1.18.1",
+    "jose": "^6.2.13",
+    "livekit-server-sdk": "^2.19.2"
+  },
+  "keywords": [
+    "zoom-clone",
+    "zoom-alternative",
+    "video-conferencing",
+    "webrtc",
+    "livekit",
+    "self-hosted",
+    "google-meet-alternative",
+    "online-classes",
+    "screen-sharing",
+    "game-streaming",
+    "remote-play",
+    "cloud-gaming",
+    "parsec-alternative",
+    "virtual-gamepad",
+    "electron",
+    "nodejs"
+  ],
+  "author": "Santhosh A (SanStudio)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YOUR-GITHUB-USERNAME/sanwes-zoom-clone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR-GITHUB-USERNAME/sanwes-zoom-clone/issues"
+  },
+  "homepage": "https://github.com/YOUR-GITHUB-USERNAME/sanwes-zoom-clone#readme",
+  "engines": {
+    "node": ">=20.6"
+  }
+}

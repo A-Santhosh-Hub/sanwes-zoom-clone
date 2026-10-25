@@ -1,0 +1,16 @@
+{
+  "name": "sanwes-studio",
+  "productName": "SanWe's Studio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SanWe's on your own computer: starts the servers, opens the meeting in its own window, shares a public link and records the window with its sound.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "node build.mjs"
+  },
+  "devDependencies": {
+    "@electron/packager": "^20.3.0",
+    "electron": "^45.0.0"
+  }
+}

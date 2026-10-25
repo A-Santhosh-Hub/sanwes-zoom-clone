@@ -1,0 +1,8 @@
+{
+  "name": "sanwes-viewer",
+  "productName": "SanWe's Viewer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Watch a SanWe's class in a window that screen recorders cannot capture (Windows hides it from screenshots and recordings).",
+  "main": "main.js"
+}

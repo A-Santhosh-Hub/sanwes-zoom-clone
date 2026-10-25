@@ -1,0 +1,13 @@
+# Template for the LiveKit media server config. "npm run setup" copies it to livekit.yaml and puts a NEW random secret on the
+# line below, so every computer has its own. livekit.yaml itself is never committed (see .gitignore).
+port: 7880
+bind_addresses:
+  - ""
+rtc:
+  tcp_port: 7881
+  udp_port: 7882            # one shared UDP port for all media (a port range would cap the room at its size)
+  use_external_ip: true
+keys:
+  sanwes: replace-me-on-first-start
+logging:
+  level: info

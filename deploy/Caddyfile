@@ -1,0 +1,30 @@
+# HTTPS front door for SanWe's: one hostname, one certificate.
+#   https://<host>/      -> Node app (port 3000)
+#   wss://<host>/lk/rtc  -> LiveKit signalling (port 7880), prefix stripped
+#
+# Set the host before starting Caddy:
+#   PowerShell:  $env:SANWES_HOST = "192.168.1.50"   (LAN IP or a DNS name)
+#                caddy run --config deploy\Caddyfile
+# Then in .env:  LIVEKIT_URL=wss://<same host>/lk
+#
+# - LAN / IP address / localhost: `tls internal` issues a cert from Caddy's own CA.
+#   Run `caddy trust` on the server, and install Caddy's root.crt on every other device
+#   (Windows: %APPDATA%\Caddy\pki\authorities\local\root.crt) or browsers will warn and block capture.
+# - Public DNS name: delete the `tls internal` line and Caddy gets a Let's Encrypt cert
+#   (needs ports 80 and 443 reachable from the internet).
+#
+# Media itself does NOT go through Caddy: open 7881/tcp, 7882/udp (and TURN ports, see
+# livekit.prod.example.yaml) straight to the LiveKit server.
+
+{$SANWES_HOST:localhost} {
+	tls internal
+	encode gzip
+
+	handle_path /lk/* {
+		reverse_proxy 127.0.0.1:7880
+	}
+
+	handle {
+		reverse_proxy 127.0.0.1:3000
+	}
+}

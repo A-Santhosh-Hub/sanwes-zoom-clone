@@ -1,0 +1,28 @@
+# Copy to ../livekit.yaml (keep your existing `keys:` entry) when exposing LiveKit beyond localhost.
+# Run with:  npm run media
+port: 7880
+bind_addresses:
+  - ""
+rtc:
+  tcp_port: 7881                 # ICE/TCP fallback (open in firewall)
+  udp_port: 7882                 # media UDP, one shared port (open in firewall). A port range would cap the room at its size.
+  use_external_ip: true          # advertise the public IP (STUN-discovered). On a pure LAN set false
+                                 # and optionally `node_ip: <lan ip>` so clients get the right candidate.
+  # node_ip: 192.168.1.50
+keys:
+  sanwes: CHANGE_ME_TO_THE_SECRET_IN_.env
+
+# Built-in TURN relay for clients behind strict NAT / firewalls that block UDP (corporate Wi-Fi, mobile).
+# Needs its own DNS name and a TLS cert for it (Let's Encrypt, or your own CA). Open 3478/udp and 5349/tcp.
+# If you do not want TURN, delete this block - direct UDP/TCP will still work for most networks.
+turn:
+  enabled: true
+  domain: turn.example.com
+  tls_port: 5349
+  udp_port: 3478
+  cert_file: C:\path\to\turn.example.com.crt
+  key_file: C:\path\to\turn.example.com.key
+  # external_tls: true           # use instead of cert_file/key_file if a TLS terminator sits in front of TURN
+
+logging:
+  level: info

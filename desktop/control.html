@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>SanWe's Studio</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' blob:">
+<link rel="stylesheet" href="control.css"></head>
+<body>
+<header><div class="logo">SanWe's <b>Studio</b></div><div id="svc" class="svc"><i></i><span>Starting…</span></div></header>
+<main>
+  <section>
+    <h2>Meeting link</h2>
+    <div class="row"><label>On this computer</label><code id="u-local"></code><button data-copy="u-local">Copy</button></div>
+    <div class="row"><label>Same Wi-Fi</label><code id="u-lan"></code><button data-copy="u-lan">Copy</button></div>
+    <div class="row"><label>Public link</label><code id="u-tunnel" class="dim">not started</code><button id="t-copy" hidden data-copy="u-tunnel">Copy</button><button id="t-go" class="primary">Start public link</button></div>
+    <p class="hint" id="t-hint">The public link lets people outside your Wi-Fi join. Send it to your guests, then start the meeting.</p>
+    <button id="open-meeting" class="wide">Open the meeting window</button>
+    <button id="size-meeting" class="wide secondary">Make the meeting window large (best for recording)</button>
+    <p class="hint" id="m-state"></p>
+  </section>
+  <section>
+    <h2>Recording</h2>
+    <p class="hint">Records the <b>meeting window</b> as it looks, with all the sound this computer plays (your guests' voices, shared sound) and, if ticked, your microphone.</p>
+    <div class="row"><label>Quality</label>
+      <select id="quality"><option value="standard">Standard: 30 fps, 8 Mbit/s</option><option value="high" selected>High: 60 fps, 14 Mbit/s</option><option value="max">Maximum: 60 fps, 24 Mbit/s</option></select></div>
+    <label class="check"><input type="checkbox" id="use-mic" checked> My microphone</label>
+    <div class="row sub" id="mic-row"><label></label><select id="mic"></select></div>
+    <label class="check"><input type="checkbox" id="want-audio" checked> Also save a sound-only file (M4A)</label>
+    <div class="rec">
+      <button id="r-start" class="rec-btn">&#9679; Record</button>
+      <button id="r-pause" disabled>Pause</button>
+      <button id="r-stop" disabled>Stop</button>
+      <span id="r-time">00:00</span>
+    </div>
+    <div class="meter"><div id="r-level"></div></div>
+    <p id="r-note" class="hint"></p>
+    <div id="r-saved" class="saved" hidden></div>
+    <p class="hint">Keep the meeting window open on screen (not minimized). Recordings go to <span id="dir"></span>.</p>
+    <button id="open-folder" class="wide secondary">Open the recordings folder</button>
+  </section>
+</main>
+<script src="control.js"></script>
+</body></html>

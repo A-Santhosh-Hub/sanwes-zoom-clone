@@ -1,0 +1,863 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SanWe's</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- Icon set (drawn for this project). Used as <svg class="ic"><use href="#i-name"/></svg> -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+      <symbol id="i-mic-off" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M4 4l16 16"/></symbol>
+      <symbol id="i-cam" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3z"/></symbol>
+      <symbol id="i-cam-off" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3zM4 4l16 16"/></symbol>
+      <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.5 2.7-6 6-6s6 2.5 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14.2c2.8.3 5 2.4 5 5.3"/></symbol>
+      <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+      <symbol id="i-share" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 8v5M9.5 10.5L12 8l2.5 2.5M8 20h8"/></symbol>
+      <symbol id="i-film" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M3 15h18M8 5v14M16 5v14"/></symbol>
+      <symbol id="i-smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14c1 1.6 2.4 2.4 4 2.4s3-.8 4-2.4M9 9.5h.01M15 9.5h.01"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5L15.5 10"/></symbol>
+      <symbol id="i-caret" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></symbol>
+      <symbol id="i-speaker" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="11" rx="1.5"/><path d="M6 19h3M11 19h3M16 19h2"/></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7M5 10v10h5v-6h4v6h5V10"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+      <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+      <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V5M7.5 9.5L12 5l4.5 4.5M5 19h14"/></symbol>
+      <symbol id="i-gamepad" viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7.5 10.5v4M5.5 12.5h4M16 11.5h.01M18 13.5h.01"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5h.01"/></symbol>
+      <symbol id="i-end" viewBox="0 0 24 24"><path d="M8.5 2.8h7L21.2 8.5v7L15.5 21.2h-7L2.8 15.5v-7z"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10C19.5 15.4 12 20 12 20z"/></symbol>
+      <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12h.01M12 12h.01M16.5 12h.01"/></symbol>
+      <symbol id="i-up" viewBox="0 0 24 24"><path d="M6 15l6-6 6 6"/></symbol>
+      <symbol id="i-right" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+      <symbol id="i-dots" viewBox="0 0 24 24"><path d="M5 12h.01M12 12h.01M19 12h.01"/></symbol>
+      <symbol id="i-rec" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.2" fill="currentColor"/></symbol>
+      <symbol id="i-clip" viewBox="0 0 24 24"><path d="M20 11.5l-8 8a5 5 0 01-7-7l9-9a3.5 3.5 0 015 5l-9 9a2 2 0 01-3-3l8-8"/></symbol>
+      <symbol id="i-cc" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M10 10.5a2 2 0 100 3M16 10.5a2 2 0 100 3"/></symbol>
+      <symbol id="i-rooms" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></symbol>
+      <symbol id="i-poll" viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></symbol>
+      <symbol id="i-qa" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4V5z"/><path d="M12 8.5v.01M12 11v2"/></symbol>
+      <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4M7 12l3-3 2 2 4-4"/></symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24"><path d="M4 20l1-4L16.5 4.5a2 2 0 013 3L8 19z"/><path d="M14 7l3 3"/></symbol>
+      <symbol id="i-marker" viewBox="0 0 24 24"><path d="M9 3l6 6-8 8H4v-3z"/><path d="M13 5l6 6M4 21h16"/></symbol>
+      <symbol id="i-eraser" viewBox="0 0 24 24"><path d="M3 17l9-11 8 7-6 7H7z"/><path d="M9 20h11"/></symbol>
+      <symbol id="i-shapes" viewBox="0 0 24 24"><rect x="3" y="10" width="9" height="9" rx="1"/><circle cx="16" cy="8" r="5"/></symbol>
+      <symbol id="i-text" viewBox="0 0 24 24"><path d="M5 6V4h14v2M12 4v16M9 20h6"/></symbol>
+      <symbol id="i-note" viewBox="0 0 24 24"><path d="M4 4h16v11l-5 5H4z"/><path d="M15 20v-5h5"/></symbol>
+      <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12V6a1.5 1.5 0 013 0v5M11 11V4.5a1.5 1.5 0 013 0V11M14 11V6a1.5 1.5 0 013 0v7c0 4-2 7-6 7-3 0-4.5-2-6-4.5L3 12.5a1.5 1.5 0 012.5-1.5L8 14"/></symbol>
+      <symbol id="i-undo" viewBox="0 0 24 24"><path d="M9 14L4 9l5-5M4 9h10a6 6 0 010 12h-3"/></symbol>
+      <symbol id="i-redo" viewBox="0 0 24 24"><path d="M15 14l5-5-5-5M20 9H10a6 6 0 000 12h3"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 17V11a6 6 0 0112 0v6l1.5 2h-15z"/><path d="M10 21h4"/></symbol>
+      <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+      <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5" fill="currentColor"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ===================================================== home (light theme, like a desktop meeting client) -->
+  <!-- ===================================================== sign in / create account -->
+  <section id="auth" hidden aria-label="Sign in">
+    <div class="auth-shell">
+      <div class="auth-brand"><div class="auth-logo">SanWe's</div><p>Meetings that run on your own computer.</p></div>
+      <div class="auth-card">
+        <div class="auth-tabs" role="tablist">
+          <button type="button" id="at-signin" role="tab" aria-selected="true">Sign in</button>
+          <button type="button" id="at-signup" role="tab" aria-selected="false">Create account</button>
+        </div>
+        <p id="auth-notice" class="auth-notice" role="status" hidden></p>
+
+        <form id="signin-form" novalidate autocomplete="on">
+          <label class="fld">Username or email<input id="si-id" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" /></label>
+          <label class="fld">Password<span class="pw"><input id="si-pw" name="password" type="password" autocomplete="current-password" /><button type="button" class="eye" data-eye="si-pw" aria-label="Show password">Show</button></span></label>
+          <label class="check"><input type="checkbox" id="si-keep" checked /> Keep me signed in on this device</label>
+          <p class="err" id="si-err" role="alert"></p>
+          <button type="submit" class="primary wide-btn2" id="si-go">Sign in</button>
+          <p class="auth-hint">Forgot your password? Ask the administrator of this computer to reset it: nothing is sent by email.</p>
+          <p class="auth-hint">New here? <button type="button" class="linkish" id="go-signup">Create an account</button></p>
+        </form>
+
+        <form id="signup-form" novalidate hidden autocomplete="on">
+          <p class="auth-hint first-note" id="su-first" hidden>You are the first person to sign up on this computer, so this account will be the <b>administrator</b>.</p>
+          <label class="fld">Username<input id="su-username" name="username" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="24" /><span class="err" data-err="username"></span></label>
+          <label class="fld">Password<span class="pw"><input id="su-pw" name="new-password" type="password" autocomplete="new-password" maxlength="128" /><button type="button" class="eye" data-eye="su-pw" aria-label="Show password">Show</button></span><span class="meter"><i id="su-meter"></i></span><span class="hintline" id="su-pw-hint">At least 8 characters, with letters and a number.</span><span class="err" data-err="password"></span></label>
+          <label class="fld">Confirm password<span class="pw"><input id="su-pw2" type="password" autocomplete="new-password" maxlength="128" /><button type="button" class="eye" data-eye="su-pw2" aria-label="Show password">Show</button></span><span class="err" data-err="password2"></span></label>
+          <label class="fld">Email<input id="su-email" name="email" type="email" autocomplete="email" maxlength="120" /><span class="err" data-err="email"></span></label>
+          <label class="fld">Confirm email<input id="su-email2" type="email" autocomplete="off" maxlength="120" /><span class="err" data-err="email2"></span></label>
+          <label class="fld">Name shown in meetings <small>(optional)</small><input id="su-display" autocomplete="nickname" maxlength="32" /></label>
+          <p class="err" id="su-err" role="alert"></p>
+          <p class="muted small-note" id="su-vault-note">Note: the administrator of this computer can look up the password you choose here if you forget it. Do not use a password from another website or app.</p>
+          <button type="submit" class="primary wide-btn2" id="su-go">Create account</button>
+          <p class="auth-hint">Your account is stored on this computer only. Your email is not verified or shared.</p>
+          <p class="auth-hint">Already have an account? <button type="button" class="linkish" id="go-signin">Sign in</button></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div id="acct-menu" class="acct-menu" hidden role="menu">
+    <div class="acct-head"><span id="am-avatar" class="pav big"></span><div><div id="am-name" class="am-name"></div><div id="am-email" class="am-email"></div><div id="am-role" class="am-role"></div></div></div>
+    <button type="button" id="am-profile" role="menuitem">My profile</button>
+    <button type="button" id="am-settings2" role="menuitem">Settings</button>
+    <button type="button" id="am-accounts" role="menuitem" hidden>Accounts on this computer</button>
+    <hr />
+    <button type="button" id="am-signout" role="menuitem" class="danger">Sign out</button>
+  </div>
+
+  <section id="join" hidden>
+    <nav id="rail" aria-label="Main">
+      <div class="brand">SanWe's</div>
+      <button class="rail-btn active" data-page="home"><svg class="ic"><use href="#i-home"/></svg><span>Home</span></button>
+      <button class="rail-btn" data-page="meetings"><svg class="ic"><use href="#i-cam"/></svg><span>Meetings</span></button>
+      <span class="spacer"></span>
+      <button class="rail-btn" id="rail-settings"><svg class="ic"><use href="#i-gear"/></svg><span>Settings</span></button>
+    </nav>
+    <div id="shell">
+      <header id="home-top">
+        <label class="search"><svg class="ic small"><use href="#i-search"/></svg><input id="global-search" placeholder="Search meetings (Ctrl+E)" autocomplete="off" /></label>
+        <button id="btn-profile" class="avatar-btn" aria-label="Profile"></button>
+      </header>
+      <div id="home-banner" role="alert" hidden></div>
+
+      <main id="home-main">
+        <!-- ---------- Home page -->
+        <div id="page-home" class="page">
+          <div class="home-grid">
+            <div class="home-center">
+              <div id="clock">00:00</div>
+              <div id="date"></div>
+              <div class="tiles">
+                <div class="tile-wrap">
+                  <button id="tile-meet" class="big orange" aria-label="Meet"><svg class="ic"><use href="#i-cam"/></svg></button>
+                  <span class="tile-label">Meet <button id="meet-caret" class="caret" aria-label="Meeting options"><svg class="ic small"><use href="#i-caret"/></svg></button></span>
+                </div>
+                <div class="tile-wrap"><button id="tile-join" class="big blue" aria-label="Join"><svg class="ic"><use href="#i-plus"/></svg></button><span class="tile-label">Join</span></div>
+                <div class="tile-wrap"><button id="tile-schedule" class="big blue" aria-label="Schedule"><svg class="ic"><use href="#i-calendar"/></svg></button><span class="tile-label">Schedule</span></div>
+                <div class="tile-wrap"><button id="tile-share" class="big blue" aria-label="Share"><svg class="ic"><use href="#i-upload"/></svg></button><span class="tile-label">Share</span></div>
+                <div class="tile-wrap"><button id="tile-rooms" class="big blue" aria-label="Game Hub"><svg class="ic"><use href="#i-gamepad"/></svg></button><span class="tile-label">Game Hub</span></div>
+              </div>
+              <section class="card upcoming">
+                <div class="up-head">
+                  <button id="up-add" class="icon-btn" aria-label="Schedule a meeting"><svg class="ic small"><use href="#i-plus"/></svg></button>
+                  <strong id="up-title">Today</strong>
+                </div>
+                <div class="up-bar"><button id="up-today" class="pill"><svg class="ic small"><use href="#i-calendar"/></svg> Today</button><button id="up-prev" class="icon-btn" aria-label="Previous day">&#8249;</button><button id="up-next" class="icon-btn" aria-label="Next day">&#8250;</button></div>
+                <div id="up-list"></div>
+                <div id="recent-list"></div>
+                <div id="up-empty" class="empty">
+                  <svg class="art" viewBox="0 0 120 90" aria-hidden="true"><path d="M60 14 18 40h84z" fill="#b8c4e8"/><path d="M60 14v52" stroke="#8a97bd" stroke-width="3"/><ellipse cx="60" cy="74" rx="26" ry="5" fill="#dde3f2"/></svg>
+                  <p>No meetings scheduled.</p>
+                  <button id="up-empty-link" class="linkish">+ Schedule a meeting</button>
+                </div>
+              </section>
+            </div>
+            <aside class="card live-panel" id="rooms" hidden>
+              <h2>Live rooms</h2>
+              <div id="room-list"></div>
+              <p id="rooms-empty" class="muted">Nobody is in a room right now. Start one with <b>Game Hub</b>.</p>
+            </aside>
+          </div>
+        </div>
+
+        <!-- ---------- Meetings page -->
+        <div id="page-meetings" class="page" hidden>
+          <div class="mt-grid">
+            <aside class="mt-side">
+              <div class="mt-side-top"><span class="muted">Calendar</span><button id="mt-add" class="blue-circle" aria-label="New event"><svg class="ic small"><use href="#i-plus"/></svg></button></div>
+              <div class="cal-head"><button id="cal-prev" class="icon-btn" aria-label="Previous month">&#8249;</button><strong id="cal-title"></strong><button id="cal-next" class="icon-btn" aria-label="Next month">&#8250;</button></div>
+              <div class="cal-week"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+              <div id="cal-grid"></div>
+              <div class="pmi-box">
+                <div class="muted">Personal meeting ID</div>
+                <div class="pmi-row"><strong id="pmi-id">...</strong></div>
+                <div class="pmi-actions"><button id="pmi-start" class="primary">Start</button><button id="pmi-copy" class="secondary">Copy invitation</button></div>
+              </div>
+            </aside>
+            <section class="mt-main">
+              <div class="mt-bar">
+                <button id="mt-today" class="pill"><svg class="ic small"><use href="#i-calendar"/></svg> Today</button>
+                <button id="mt-prev" class="icon-btn" aria-label="Previous">&#8249;</button>
+                <button id="mt-next" class="icon-btn" aria-label="Next">&#8250;</button>
+                <strong id="mt-title"></strong>
+                <span class="up-spacer"></span>
+                <select id="mt-view" aria-label="View"><option value="agenda">Agenda</option><option value="day">Day</option></select>
+              </div>
+              <div id="mt-list"></div>
+              <div id="mt-empty" class="empty big-empty">
+                <svg class="art" viewBox="0 0 120 90" aria-hidden="true"><rect x="22" y="22" width="76" height="56" rx="6" fill="#b8c4e8"/><rect x="22" y="22" width="76" height="14" rx="6" fill="#8aa0e0"/><circle cx="46" cy="52" r="4" fill="#fff"/><circle cx="62" cy="52" r="4" fill="#fff"/><circle cx="78" cy="52" r="4" fill="#fff"/><circle cx="46" cy="66" r="4" fill="#fff"/><circle cx="62" cy="66" r="4" fill="#fff"/></svg>
+                <p><b>No events available yet</b></p>
+                <p id="mt-empty-sub" class="muted"></p>
+                <button id="mt-empty-btn" class="primary">Schedule a meeting</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="meet-menu" class="popover menu" hidden role="menu">
+      <label class="mm-row"><input type="checkbox" id="mm-video" /> Start with video on</label>
+      <label class="mm-row"><input type="checkbox" id="mm-pmi" /> Use my Personal Meeting ID</label>
+    </div>
+  </section>
+
+  <!-- Waiting room (guest side): full screen until the host lets you in -->
+  <div id="waiting" hidden>
+    <div class="wcard">
+      <div class="spinner" aria-hidden="true"></div>
+      <h2 id="waiting-msg">Please wait, the meeting host will let you in soon.</h2>
+      <p id="waiting-title" class="muted"></p>
+      <button type="button" id="waiting-cancel" class="secondary">Leave waiting room</button>
+    </div>
+  </div>
+
+  <!-- ===================================================== meeting window -->
+  <section id="call" hidden>
+    <header id="topbar">
+      <div class="top-left">
+        <span class="wordmark">SanWe's</span>
+        <button id="btn-info" class="info-title" data-pop="info-pop" aria-label="Meeting information"><svg class="ic small"><use href="#i-info"/></svg><span id="room-title"></span></button>
+        <img id="room-cover" alt="" hidden />
+        <span id="room-badge" class="badge" hidden></span>
+        <span id="count"></span>
+        <div id="info-pop" class="popover info" hidden>
+          <div class="pop-title" id="info-title"></div>
+          <div class="pop-row"><span>Invite link</span><b class="linkrow"><span id="info-link"></span><button type="button" class="icon-btn js-invite" aria-label="Copy invite link"><svg class="ic small"><use href="#i-link"/></svg></button></b></div>
+          <div class="pop-row"><span>Meeting ID</span><b id="info-id"></b></div>
+          <div class="pop-row" id="info-pass-row"><span>Passcode</span><b id="info-pass"></b></div>
+          <div class="pop-row"><span>Host</span><b id="info-host"></b></div>
+          <div class="pop-row"><span>Type</span><b id="info-type"></b></div>
+          <button type="button" id="info-hosttools" class="pop-link" hidden>Host tools</button>
+        </div>
+      </div>
+      <div class="top-right">
+        <span id="rec-badge" class="rec-badge" hidden><i></i><span id="rec-text">REC</span></span>
+        <span id="shield" class="shield" title="This meeting is protected by a passcode or waiting room" hidden><svg class="ic"><use href="#i-shield"/></svg></span>
+        <span id="timer" title="Time in the meeting">00:00</span>
+        <span id="pager" class="pager" hidden><button id="pg-prev" type="button" aria-label="Previous page">&#8249;</button><span id="pg-label">1/1</span><button id="pg-next" type="button" aria-label="Next page">&#8250;</button></span>
+        <button id="btn-view" class="view-btn" data-pop="view-menu"><svg class="ic small"><use href="#i-grid"/></svg><span id="view-label">Gallery</span><svg class="ic small"><use href="#i-caret"/></svg></button>
+        <div id="view-menu" class="popover menu view-menu" hidden role="menu">
+          <button id="view-standard" type="button"><span class="chk"></span>Standard</button>
+          <button id="view-sbs-speaker" type="button"><span class="chk"></span>Side-by-side: Speaker</button>
+          <button id="view-sbs-gallery" type="button"><span class="chk"></span>Side-by-side: Gallery</button>
+          <button id="view-speaker" type="button"><span class="chk"></span>Speaker</button>
+          <button id="view-gallery" type="button"><span class="chk"></span>Gallery</button>
+          <hr />
+          <div class="mn-title">Sort gallery by</div>
+          <button id="sort-joined" type="button"><span class="chk"></span>Joined first</button>
+          <button id="sort-video" type="button"><span class="chk"></span>Video on first</button>
+          <button id="sort-name" type="button"><span class="chk"></span>Name (A to Z)</button>
+          <hr />
+          <button id="view-hide-self" type="button"><span class="chk"></span>Hide self view</button>
+          <button id="view-hide-novideo" type="button"><span class="chk"></span>Hide non-video participants</button>
+          <button id="view-swap" type="button" hidden><span class="chk"></span>Swap video and shared screen</button>
+          <button id="view-timers" type="button"><span class="chk"></span>Show meeting timer</button>
+          <hr />
+          <button id="view-fullscreen" type="button"><span class="chk"></span>Fullscreen</button>
+        </div>
+      </div>
+    </header>
+
+    <div id="ap-bar" role="status" hidden><span id="ap-text"></span><button type="button" id="ap-play" class="secondary" hidden>Play the first video now</button></div>
+    <div id="bo-bar" hidden><strong id="bo-bar-t">Breakout room</strong><span class="grow"></span><button type="button" id="bo-help" class="secondary">Ask for help</button><button type="button" id="bo-return" class="secondary">Return to main session</button></div>
+    <div id="status" role="status" hidden>
+      <span id="status-text"></span>
+      <button id="status-action" class="ghost" hidden></button>
+    </div>
+
+    <div id="body">
+      <main id="stage-area">
+        <div id="stage"><div id="poster" hidden><div id="poster-art"></div><div id="poster-text"></div></div></div>
+        <div id="strip-handle" role="separator" aria-orientation="horizontal" aria-label="Drag to resize the people strip" title="Drag to resize (double-click resets)"></div>
+        <div id="grid"></div>
+        <section id="wb" hidden aria-label="Whiteboard">
+          <div class="wb-bar">
+            <div class="wb-tabs" role="tablist">
+              <button id="wb-tab-meeting" type="button" role="tab" class="wb-tab"><svg class="ic small"><use href="#i-users"/></svg> Meeting</button>
+              <span class="wb-tab-wrap"><button id="wb-tab-board" type="button" role="tab" class="wb-tab" aria-selected="true"><svg class="ic small"><use href="#i-board"/></svg> My whiteboard</button><button id="wb-close-tab" type="button" class="icon-btn" aria-label="Stop whiteboard"><svg class="ic small"><use href="#i-close"/></svg></button></span>
+            </div>
+            <div class="wb-right"><button id="wb-save" type="button" class="wb-act">Save as image</button><button id="wb-clear" type="button" class="wb-act">Clear</button><button id="wb-stop" type="button" class="wb-act stop">Stop</button></div>
+          </div>
+          <div class="wb-area">
+            <div class="wb-tools" role="toolbar" aria-label="Whiteboard tools">
+              <button type="button" data-tool="hand" title="Move the board"><svg class="ic"><use href="#i-hand"/></svg></button>
+              <button type="button" data-tool="pen" title="Pen" aria-pressed="true"><svg class="ic"><use href="#i-pen"/></svg></button>
+              <button type="button" data-tool="highlighter" title="Highlighter"><svg class="ic"><use href="#i-marker"/></svg></button>
+              <button type="button" data-tool="eraser" title="Eraser"><svg class="ic"><use href="#i-eraser"/></svg></button>
+              <button type="button" id="wb-shape-next" data-tool="shape" title="Shapes (click again for the next shape)"><svg class="ic"><use href="#i-shapes"/></svg><small id="wb-shape-label">Rectangle</small></button>
+              <button type="button" data-tool="text" title="Text"><svg class="ic"><use href="#i-text"/></svg></button>
+              <button type="button" data-tool="note" title="Sticky note"><svg class="ic"><use href="#i-note"/></svg></button>
+              <hr />
+              <button type="button" class="swatch" data-color="#1d2530" style="--c:#1d2530" title="Black" aria-label="Black"></button>
+              <button type="button" class="swatch" data-color="#e5484d" style="--c:#e5484d" title="Red" aria-label="Red"></button>
+              <button type="button" class="swatch" data-color="#f59e0b" style="--c:#f59e0b" title="Orange" aria-label="Orange"></button>
+              <button type="button" class="swatch" data-color="#2ea043" style="--c:#2ea043" title="Green" aria-label="Green"></button>
+              <button type="button" class="swatch" data-color="#0e72ed" style="--c:#0e72ed" title="Blue" aria-label="Blue"></button>
+              <button type="button" class="swatch" data-color="#8e4ec6" style="--c:#8e4ec6" title="Purple" aria-label="Purple"></button>
+              <hr />
+              <button type="button" class="dot" data-size="0" title="Thin" aria-label="Thin"><i style="--d:4px"></i></button>
+              <button type="button" class="dot" data-size="1" title="Medium" aria-label="Medium" aria-pressed="true"><i style="--d:8px"></i></button>
+              <button type="button" class="dot" data-size="2" title="Thick" aria-label="Thick"><i style="--d:13px"></i></button>
+            </div>
+            <canvas id="wb-canvas"></canvas>
+            <div class="wb-hist"><button type="button" id="wb-undo" aria-label="Undo"><svg class="ic"><use href="#i-undo"/></svg></button><button type="button" id="wb-redo" aria-label="Redo"><svg class="ic"><use href="#i-redo"/></svg></button></div>
+            <div class="wb-zoomctl"><button type="button" id="wb-zoom-out" aria-label="Zoom out">&minus;</button><span id="wb-zoom">100%</span><button type="button" id="wb-zoom-in" aria-label="Zoom in">+</button></div>
+          </div>
+        </section>
+      </main>
+
+      <aside id="chat" hidden aria-label="Chat and participants">
+        <div class="panel-head"><strong id="panel-title">Chat</strong><span class="panel-tools"><button id="chat-more" class="icon-btn" aria-label="Chat options" data-pop="chat-menu"><svg class="ic small"><use href="#i-dots"/></svg></button><button id="panel-close" class="icon-btn" aria-label="Close panel"><svg class="ic small"><use href="#i-close"/></svg></button></span></div>
+        <div id="chat-pane">
+          <div class="chat-tabs"><span class="chat-tab on"><svg class="ic small"><use href="#i-users"/></svg> Everyone</span></div>
+          <div id="chat-log" role="log" aria-live="polite"></div>
+          <label class="chat-to">To: <select id="chat-to" aria-label="Send to"><option value="all">Everyone</option></select></label>
+          <div class="chat-who"><svg class="ic small"><use href="#i-users"/></svg> <span id="chat-who-note">Everyone can see your messages</span></div>
+          <form id="chat-form">
+            <button type="button" id="chat-attach" class="icon-btn" aria-label="Send a file" title="Send a file" hidden><svg class="ic small"><use href="#i-clip"/></svg></button>
+            <input type="file" id="chat-file" hidden />
+            <input id="chat-input" placeholder="Message everyone" maxlength="500" autocomplete="off" />
+            <button type="submit" class="primary" aria-label="Send">Send</button>
+          </form>
+        </div>
+        <div id="qa-pane" hidden>
+          <div class="qa-tabs" role="tablist"><button type="button" data-qa="all" class="on">All</button><button type="button" data-qa="open">Open</button><button type="button" data-qa="answered">Answered</button><button type="button" data-qa="mine">My questions</button></div>
+          <div id="qa-list" aria-live="polite"></div>
+          <p id="qa-off" class="muted" hidden>The host turned off questions.</p>
+          <form id="qa-form">
+            <textarea id="qa-input" rows="2" maxlength="300" placeholder="Type your question here..."></textarea>
+            <div class="qa-foot"><label class="check" id="qa-anon-l"><input type="checkbox" id="qa-anon" /> Ask anonymously</label><button type="submit" class="primary">Send</button></div>
+          </form>
+        </div>
+        <div id="poll-pane" hidden>
+          <div id="poll-host-bar" class="poll-bar" hidden><button type="button" id="poll-new-btn" class="primary">Create a poll</button></div>
+          <div id="poll-list" aria-live="polite"></div>
+        </div>
+        <div id="bo-pane" hidden>
+          <div id="bo-body" class="bo-body"></div>
+        </div>
+        <div id="people-pane" hidden>
+          <div id="waiting-box" hidden>
+            <div class="wb-head"><strong id="wb-title">Waiting room</strong><button id="wb-all" type="button" class="secondary">Admit all</button></div>
+            <ul id="waiting-list"></ul>
+          </div>
+          <input id="people-search" class="people-search" type="search" placeholder="Search participants" aria-label="Search participants" autocomplete="off" hidden />
+          <ul id="people-list"></ul>
+          <div id="people-foot">
+            <button id="btn-invite" type="button" class="pill-btn js-invite">Invite</button>
+            <span id="host-tools" hidden>
+              <button id="hb-muteall" type="button" class="pill-btn">Mute all</button>
+              <button id="hb-more" type="button" class="pill-btn">More</button>
+            </span>
+          </div>
+        </div>
+        <div id="host-pane" hidden>
+          <section id="hp-main" class="hp-view">
+            <div class="panel-head center"><strong>Host tools</strong><button id="host-close" class="icon-btn" aria-label="Close host tools"><svg class="ic small"><use href="#i-close"/></svg></button></div>
+            <label class="switch-row">Enable waiting room <input type="checkbox" role="switch" id="ht-waiting" /></label>
+            <label class="switch-row">Lock meeting <input type="checkbox" role="switch" id="hb-lock" /></label>
+            <label class="switch-row">Hide profile pictures <input type="checkbox" role="switch" id="ht-hide" /></label>
+            <hr class="hp-sep" />
+            <button type="button" class="row-link" data-view="hp-people">Participants <svg class="ic small"><use href="#i-right"/></svg></button>
+            <button type="button" class="row-link" data-view="hp-adv">Advanced <svg class="ic small"><use href="#i-right"/></svg></button>
+          </section>
+          <section id="hp-people" class="hp-view" hidden>
+            <div class="panel-head center"><button type="button" class="icon-btn hp-back" data-back="hp-main" aria-label="Back">&#8249;</button><strong>Participants</strong><button type="button" class="icon-btn hp-x" aria-label="Close host tools"><svg class="ic small"><use href="#i-close"/></svg></button></div>
+            <button type="button" id="ht-suspend" class="danger-link">Suspend participant activities</button>
+            <div class="sub-title">Allow all participants to:</div>
+            <label class="switch-row">Chat <input type="checkbox" role="switch" id="ht-chat" checked /></label>
+            <label class="switch-row">Rename themselves <input type="checkbox" role="switch" id="ht-rename" checked /></label>
+            <label class="switch-row">Unmute themselves <input type="checkbox" role="switch" id="ht-unmute" checked /></label>
+            <label class="switch-row">Start video <input type="checkbox" role="switch" id="ht-video" checked /></label>
+            <label class="switch-row">Record to computer <input type="checkbox" role="switch" id="ht-record" /></label>
+            <label class="switch-row">Send files in chat <input type="checkbox" role="switch" id="ht-files" /></label>
+            <label class="switch-row">Ask questions (Q&amp;A) <input type="checkbox" role="switch" id="ht-qa" checked /></label>
+            <label class="switch-row">Ask questions anonymously <input type="checkbox" role="switch" id="ht-qaanon" checked /></label>
+          </section>
+          <section id="hp-adv" class="hp-view" hidden>
+            <div class="panel-head center"><button type="button" class="icon-btn hp-back" data-back="hp-main" aria-label="Back">&#8249;</button><strong>Advanced</strong><button type="button" class="icon-btn hp-x" aria-label="Close host tools"><svg class="ic small"><use href="#i-close"/></svg></button></div>
+            <button type="button" class="row-link" data-view="hp-share">Share <svg class="ic small"><use href="#i-right"/></svg></button>
+            <button type="button" class="row-link" data-view="hp-wb">Whiteboard <svg class="ic small"><use href="#i-right"/></svg></button>
+            <label class="field">Recording protection
+              <select id="ht-protect"><option value="off">Off</option><option value="watermark">Watermark each person's name on the video</option><option value="app">Viewer app only (screen recorders see black)</option></select></label>
+          </section>
+          <section id="hp-share" class="hp-view" hidden>
+            <div class="panel-head center"><button type="button" class="icon-btn hp-back" data-back="hp-adv" aria-label="Back">&#8249;</button><strong>Share</strong><button type="button" class="icon-btn hp-x" aria-label="Close host tools"><svg class="ic small"><use href="#i-close"/></svg></button></div>
+            <label class="field">How many participants can share at the same time?
+              <select id="ht-sharemax"><option value="multi">Multiple participants can share simultaneously</option><option value="one">One participant can share at a time</option></select></label>
+            <label class="field">Who can share?
+              <select id="ht-sharewho"><option value="all">All participants</option><option value="host">Only host</option></select></label>
+            <label class="field">Who can share when someone else is sharing?
+              <select id="ht-sharewhen"><option value="all">All participants</option><option value="host">Only host</option></select></label>
+          </section>
+          <section id="hp-wb" class="hp-view" hidden>
+            <div class="panel-head center"><button type="button" class="icon-btn hp-back" data-back="hp-adv" aria-label="Back">&#8249;</button><strong>Whiteboard</strong><button type="button" class="icon-btn hp-x" aria-label="Close host tools"><svg class="ic small"><use href="#i-close"/></svg></button></div>
+            <label class="field">Who can draw on a shared whiteboard?
+              <select id="ht-wbwho"><option value="all">All participants</option><option value="host">Only host</option></select></label>
+          </section>
+        </div>
+      </aside>
+      <div id="cc-bar" role="status" aria-live="polite" hidden><strong id="cc-who"></strong> <span id="cc-text"></span></div>
+      <div id="reactions" aria-hidden="true"></div>
+    </div>
+
+    <!-- popup menus (positioned by the code next to the button that opened them) -->
+    <div id="audio-menu" class="popover menu wide" hidden role="menu">
+      <div class="mn-title">Select a microphone</div><div id="am-mics"></div>
+      <hr /><div class="mn-title">Select a speaker</div><div id="am-spk"></div>
+      <hr /><div class="mn-title">Microphone modes</div>
+      <button id="am-mode-noise" type="button"><span class="chk"></span>Noise removal (default)</button>
+      <button id="am-mode-original" type="button"><span class="chk"></span>Original sound for musicians</button>
+      <hr /><button id="am-test" type="button"><span class="chk"></span>Test speaker &amp; microphone</button>
+      <button id="am-leave" type="button"><span class="chk"></span><span id="am-leave-label">Leave computer audio</span></button>
+      <hr /><button id="am-settings" type="button"><span class="chk"></span>Audio settings</button>
+    </div>
+
+    <div id="video-menu2" class="popover menu wide" hidden role="menu">
+      <div class="mn-title">Select a camera</div><div id="vm-cams"></div>
+      <hr /><label class="switch-row dark">Blur my background <input type="checkbox" role="switch" id="vm-blur" /></label>
+      <hr /><button id="vm-settings" type="button"><span class="chk"></span>Video &amp; effects settings</button>
+    </div>
+
+    <div id="share-menu" class="popover menu" hidden role="menu">
+      <button id="sm-video" type="button"><svg class="ic small"><use href="#i-film"/></svg> Share a video file</button>
+      <button id="sm-settings" type="button"><svg class="ic small"><use href="#i-gear"/></svg> Screen sharing settings</button>
+    </div>
+
+    <div id="more-menu" class="popover more" hidden role="menu">
+      <div class="more-grid">
+        <button id="btn-record" type="button"><svg class="ic"><use href="#i-rec"/></svg><span class="lbl">Record</span></button>
+        <button id="btn-cc" type="button"><svg class="ic"><use href="#i-cc"/></svg><span class="lbl">Captions</span></button>
+        <button id="btn-bo" type="button"><svg class="ic"><use href="#i-rooms"/></svg><span class="lbl">Breakout rooms</span></button>
+        <button id="btn-polls" type="button"><svg class="ic"><use href="#i-poll"/></svg><span class="lbl">Polls</span></button>
+        <button id="btn-qa" type="button"><svg class="ic"><use href="#i-qa"/></svg><span class="lbl">Q&amp;A</span></button>
+        <button id="btn-wb" type="button" data-pop="wb-menu"><svg class="ic"><use href="#i-board"/></svg><span class="lbl">Whiteboards</span></button>
+        <button id="btn-video" type="button"><svg class="ic"><use href="#i-film"/></svg><span class="lbl">Share video</span></button>
+        <button id="more-info" type="button"><svg class="ic"><use href="#i-info"/></svg><span>Meeting info</span></button>
+        <button id="more-invite" type="button" class="js-invite"><svg class="ic"><use href="#i-link"/></svg><span>Invite</span></button>
+        <button id="btn-settings" type="button"><svg class="ic"><use href="#i-gear"/></svg><span>Settings</span></button>
+      </div>
+    </div>
+
+    <div id="react-menu" class="popover react" hidden role="menu">
+      <div class="react-sec">Send with effect</div>
+      <div id="effect-row" class="emoji-row"></div>
+      <div class="react-sec">Reactions</div>
+      <div id="react-emojis" class="emoji-row"></div>
+      <div id="feedback-row" class="feedback-row"></div>
+      <button id="btn-hand" type="button" class="wide-btn" aria-pressed="false"><span class="hand">&#9995;</span><span class="lbl">Raise Hand</span></button>
+      <button id="btn-brb" type="button" class="wide-btn" aria-pressed="false"><span class="hand">&#8987;</span><span class="lbl">Be right back</span></button>
+    </div>
+
+    <div id="row-menu" class="popover menu" hidden role="menu"></div>
+    <div id="chat-menu" class="popover menu" hidden role="menu"></div>
+    <div id="wb-menu" class="popover menu" hidden role="menu">
+      <button id="wb-new" type="button"><svg class="ic small"><use href="#i-plus"/></svg> New whiteboard</button>
+      <button id="wb-existing" type="button"><svg class="ic small"><use href="#i-board"/></svg> <span id="wb-existing-label">Existing whiteboards</span></button>
+    </div>
+    <div id="rec-menu" class="popover menu" hidden role="menu">
+      <button id="rec-pause" type="button"><svg class="ic small"><use href="#i-pause"/></svg> <span id="rec-pause-label">Pause recording</span></button>
+      <button id="rec-stop" type="button" style="color:#ff8a8d"><svg class="ic small"><use href="#i-stop"/></svg> Stop recording</button>
+      <hr /><button id="rec-settings" type="button"><svg class="ic small"><use href="#i-gear"/></svg> Recording settings</button>
+    </div>
+
+    <div id="leave-menu" class="popover leave" hidden role="menu">
+      <button id="leave-end" type="button" class="danger-block" hidden>End meeting for all</button>
+      <button id="leave-bo" type="button" class="dark-block" hidden>Leave breakout room</button>
+      <button id="leave-confirm" type="button" class="dark-block">Leave meeting</button>
+      <button id="leave-cancel" type="button" class="outline-dark">Cancel</button>
+    </div>
+
+    <div id="video-bar" hidden>
+      <button id="vb-play" type="button" class="secondary">Pause</button>
+      <input id="vb-seek" type="range" min="0" max="1000" value="0" aria-label="Seek" />
+      <span id="vb-time">0:00 / 0:00</span>
+      <label class="vb-vol">Volume here <input id="vb-vol" type="range" min="0" max="100" value="100" aria-label="Volume on this device" /></label>
+      <span id="vb-name"></span>
+      <button id="vb-stop" type="button" class="danger-block">Stop video</button>
+    </div>
+
+    <footer id="toolbar">
+      <div class="tb-group">
+        <div class="tb-split">
+          <button id="btn-mic" class="tb" aria-pressed="true"><svg class="ic"><use href="#i-mic"/></svg><span class="lbl">Audio</span></button>
+          <button id="btn-mic-caret" class="tb-caret" data-pop="audio-menu" aria-label="Audio options"><svg class="ic small"><use href="#i-up"/></svg></button>
+        </div>
+        <div class="tb-split">
+          <button id="btn-cam" class="tb" aria-pressed="false"><svg class="ic"><use href="#i-cam-off"/></svg><span class="lbl">Video</span></button>
+          <button id="btn-cam-caret" class="tb-caret" data-pop="video-menu2" aria-label="Video options"><svg class="ic small"><use href="#i-up"/></svg></button>
+        </div>
+      </div>
+      <div class="tb-group tb-center">
+        <button id="btn-people" class="tb" aria-pressed="false"><svg class="ic"><use href="#i-users"/></svg><span id="people-count" class="sup">1</span><span class="lbl">Participants</span></button>
+        <button id="btn-chat" class="tb" aria-pressed="false"><svg class="ic"><use href="#i-chat"/></svg><span class="lbl">Chat</span><span id="chat-badge" hidden>0</span></button>
+        <div class="tb-split">
+          <button id="btn-react" class="tb" data-pop="react-menu"><svg class="ic"><use href="#i-heart"/></svg><span class="lbl">React</span></button>
+        </div>
+        <div class="tb-split">
+          <button id="btn-screen" class="tb tb-share" aria-pressed="false"><svg class="ic"><use href="#i-share"/></svg><span class="lbl">Share</span></button>
+          <button id="btn-share-caret" class="tb-caret" data-pop="share-menu" aria-label="Share options"><svg class="ic small"><use href="#i-up"/></svg></button>
+        </div>
+        <button id="btn-play" class="tb" aria-pressed="false" hidden><svg class="ic"><use href="#i-gamepad"/></svg><span id="play-badge" class="sup" hidden>0</span><span class="lbl" id="play-lbl">Play</span></button>
+        <button id="btn-host" class="tb" aria-pressed="false" hidden><svg class="ic"><use href="#i-shield"/></svg><span class="lbl">Host tools</span></button>
+        <button id="btn-rec" class="tb rec-tb" data-pop="rec-menu" hidden><svg class="ic"><use href="#i-rec"/></svg><span class="lbl" id="rec-lbl">Record</span></button>
+        <button id="btn-more" class="tb" data-pop="more-menu"><svg class="ic"><use href="#i-more"/></svg><span class="lbl">More</span></button>
+      </div>
+      <div class="tb-group tb-right">
+        <button id="btn-leave" class="end-btn" data-pop="leave-menu"><svg class="ic"><use href="#i-end"/></svg><span class="lbl">End</span></button>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ===================================================== dialogs -->
+  <dialog id="join-dialog" class="small-dlg">
+    <form id="join-form2">
+      <h2>Join meeting</h2>
+      <input id="j-id" placeholder="Meeting ID or personal link name" autocomplete="off" />
+      <label id="j-pass-l" hidden><input id="j-pass" type="password" placeholder="Meeting passcode" autocomplete="off" /></label>
+      <label class="joining-as">Joining as <input id="j-name" readonly tabindex="-1" aria-label="Your name in the meeting" /></label>
+      <label class="check"><input type="checkbox" id="j-noaudio" /> Don't connect to audio</label>
+      <label class="check"><input type="checkbox" id="j-novideo" /> Turn off my video</label>
+      <p id="j-error" class="error" role="alert"></p>
+      <div class="row end"><button type="submit" id="j-submit" class="primary" disabled>Join</button><button type="button" id="j-cancel" class="outline">Cancel</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="cc-dialog" class="small-dlg">
+    <div class="pform">
+      <h2>Captions</h2>
+      <label class="check"><input type="checkbox" id="cc-show" checked /> Show captions on my screen</label>
+      <div id="cc-speak" hidden>
+        <label class="field">Language I speak <select id="cc-lang"></select></label>
+        <button type="button" id="cc-speak-btn" class="primary">Caption my voice</button>
+        <p class="muted small-note">Your browser turns your microphone into text using its own speech service (in Chrome and Edge this is an online service run by Google or Microsoft). Only the text is sent to the meeting. Leave this off if the class must stay private.</p>
+      </div>
+      <div class="row end"><button type="button" id="cc-save" class="secondary">Save transcript</button><button type="button" id="cc-close" class="outline">Close</button></div>
+    </div>
+  </dialog>
+  <dialog id="bo-join" class="small-dlg">
+    <div class="pform">
+      <h2>Breakout rooms</h2>
+      <p id="boj-t"></p>
+      <div class="row end"><button type="button" id="boj-go" class="primary">Join</button><button type="button" id="boj-later" class="outline">Later</button></div>
+    </div>
+  </dialog>
+  <dialog id="poll-new" class="small-dlg">
+    <form id="poll-new-form" class="pform">
+      <h2>Create a poll</h2>
+      <label class="field">Question <input id="pn-q" maxlength="200" autocomplete="off" placeholder="What do you want to ask?" /></label>
+      <div class="sec-title">Answers <span class="muted">(tick the right one for a quiz)</span></div>
+      <div id="pn-opts"></div>
+      <button type="button" id="pn-add" class="linkish">+ Add an answer</button>
+      <label class="check"><input type="radio" name="pn-type" id="pn-single" checked /> Single choice</label>
+      <label class="check"><input type="radio" name="pn-type" id="pn-multi" /> Multiple choice</label>
+      <label class="check"><input type="checkbox" id="pn-anon" /> Anonymous (the host cannot see who voted what)</label>
+      <p id="pn-err" class="error" role="alert"></p>
+      <div class="row end"><button type="submit" class="primary">Save poll</button><button type="button" id="pn-cancel" class="outline">Cancel</button></div>
+    </form>
+  </dialog>
+  <dialog id="poll-vote" class="small-dlg">
+    <form id="poll-vote-form" class="pform">
+      <h2 id="pv-q">Poll</h2>
+      <p id="pv-hint" class="muted"></p>
+      <div id="pv-opts"></div>
+      <p id="pv-err" class="error" role="alert"></p>
+      <div class="row end"><button type="submit" class="primary">Submit</button><button type="button" id="pv-later" class="outline">Later</button></div>
+    </form>
+  </dialog>
+  <dialog id="sched-dialog" class="tall-dlg">
+    <form id="sched-form">
+      <div class="dlg-top"><span id="s-heading">New event</span><button type="button" id="s-close" class="icon-btn" aria-label="Close"><svg class="ic small"><use href="#i-close"/></svg></button></div>
+      <input id="s-title" class="title-input" maxlength="120" placeholder="Meeting topic" />
+      <div class="when">
+        <input type="date" id="s-start-date" /><input type="time" id="s-start-time" /><span class="arrow">&rarr;</span><input type="time" id="s-end-time" /><input type="date" id="s-end-date" />
+      </div>
+      <select id="s-tz" aria-label="Time zone"></select>
+      <div class="inline"><span>Repeat</span>
+        <select id="s-repeat"><option value="none">Never</option><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option></select>
+      </div>
+      <div class="inline"><span>Remind me</span>
+        <select id="s-remind" aria-label="Reminder"></select>
+        <select id="s-remind2" aria-label="Second reminder"></select>
+      </div>
+      <div class="sec-title">Invitees</div>
+      <input id="s-invitees" placeholder="Add invitees (email addresses, separated by commas)" autocomplete="off" />
+      <div id="s-idmode">
+        <div class="sec-title">Meeting ID</div>
+        <div class="radios"><label><input type="radio" name="s-id" id="s-id-auto" checked /> Generate Automatically</label><label><input type="radio" name="s-id" id="s-id-pmi" /> <span id="s-id-pmi-label">Personal Meeting ID</span></label></div>
+      </div>
+      <div class="sec-title">Meeting agenda</div>
+      <button type="button" id="s-agenda-link" class="linkish">Create agenda</button>
+      <textarea id="s-agenda" rows="3" maxlength="2000" placeholder="What will you cover?" hidden></textarea>
+      <div id="s-more" hidden>
+        <div class="sec-title">Co-hosts <span class="muted">(made co-host automatically when they join)</span></div>
+        <div id="s-co-chips" class="chips"></div>
+        <input id="s-co-search" placeholder="Search accounts, or type a username and press Enter" autocomplete="off" />
+        <div id="s-co-list" class="co-list" hidden></div>
+        <p id="s-co-note" class="muted small-note"></p>
+        <div class="sec-title">Class automation</div>
+        <label class="check"><input type="checkbox" id="s-auto" /> Run this class by itself: open the room at the start time, play my videos and record</label>
+        <div id="s-auto-box" hidden>
+          <div class="muted small-note">Times are minutes after the start time. A video that has "repeat" plays again and again until the next step begins.</div>
+          <label class="check"><input type="checkbox" id="s-window" checked /> Open the class on this computer's screen: a real meeting window opens by itself, signs in as you (the host) and joins</label>
+          <div id="s-steps"></div>
+          <p id="s-steps-warn" class="error" role="alert" hidden></p>
+          <div class="row"><button type="button" id="s-step-add" class="secondary">+ Add a video step</button><button type="button" id="s-upload" class="secondary">Upload a video&hellip;</button><input type="file" id="s-upload-file" accept="video/mp4,video/webm,.mp4,.m4v,.webm" hidden /></div>
+          <div id="s-up-bar" class="up-bar" hidden><div></div></div>
+          <p id="s-up-note" class="muted small-note"></p>
+          <div class="inline"><span>Record</span>
+            <select id="s-rec">
+              <option value="speech">when the teacher starts speaking after the videos</option>
+              <option value="videos">as soon as the videos finish</option>
+              <option value="start">from the very start</option>
+              <option value="off">do not record by itself</option>
+            </select>
+          </div>
+          <label class="check"><input type="checkbox" id="s-rec-audio" checked /> Also save a sound-only file</label>
+          <div class="inline"><span>Video quality</span>
+            <select id="s-quality" aria-label="Video quality">
+              <option value="low">Light: 360p (best for 200 or more students)</option>
+              <option value="standard" selected>Standard: 720p</option>
+              <option value="high">High: 720p, sharper</option>
+            </select>
+          </div>
+          <p id="s-quality-note" class="muted small-note"></p>
+          <p class="muted small-note">Needs Microsoft Edge or Google Chrome on this computer (it opens a hidden window for the class). Recordings are saved in Videos &gt; SanWe's Recordings.</p>
+        </div>
+        <div class="sec-title">Security</div>
+        <div class="inline"><span>Recording protection</span>
+          <select id="s-protect" aria-label="Recording protection">
+            <option value="off">Off</option>
+            <option value="watermark">Watermark each student's name on the video</option>
+            <option value="app">SanWe's Viewer app only (screen recorders see black)</option>
+          </select>
+        </div>
+        <label class="check"><input type="checkbox" id="s-pass" checked /> Require a passcode (generated for you)</label>
+        <label class="check"><input type="checkbox" id="s-waiting" /> Waiting room: the host admits each person</label>
+        <div class="sec-title">Video and audio</div>
+        <label class="check"><input type="checkbox" id="s-hv" /> Host video on when joining</label>
+        <label class="check"><input type="checkbox" id="s-pv" /> Participant video on when joining</label>
+        <label class="check"><input type="checkbox" id="s-mute" /> Mute participants on entry</label>
+        <label class="check"><input type="checkbox" id="s-unmute" checked /> Participants can unmute themselves</label>
+        <label class="check"><input type="checkbox" id="s-allowvid" checked /> Participants can start their own video</label>
+        <p id="s-auto-people-note" class="muted small-note" hidden>For a class: students join muted and cannot unmute. The host and co-hosts are never muted or limited, and you can give one student the floor with Allow to talk.</p>
+        <label class="check"><input type="checkbox" id="s-jbh" /> Allow participants to join before the host</label>
+        <div class="sec-title">Calendar</div>
+        <div class="radios">
+          <label><input type="radio" name="s-cal" id="s-cal-none" value="none" checked /> None</label>
+          <label><input type="radio" name="s-cal" value="google" /> Google Calendar</label>
+          <label><input type="radio" name="s-cal" value="ics" /> Outlook / Other (.ics file)</label>
+        </div>
+      </div>
+      <p id="s-error" class="error" role="alert"></p>
+      <div class="dlg-foot"><button type="button" id="s-more-btn" class="linkish">More Options</button><button type="submit" id="s-save" class="primary">Save</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="sched-done" class="small-dlg">
+    <div class="done">
+      <h2 id="d-title">Meeting scheduled</h2>
+      <div class="d-topic" id="d-topic"></div>
+      <div class="muted" id="d-when"></div>
+      <textarea id="d-text" rows="9" readonly></textarea>
+      <div class="row"><button type="button" id="d-copy" class="primary">Copy invitation</button><button type="button" id="d-google" class="secondary">Google Calendar</button><button type="button" id="d-ics" class="secondary">Outlook / .ics</button></div>
+      <div class="row end"><button type="button" id="d-close" class="outline">Done</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="preview-dialog" class="preview-dlg">
+    <div class="pv-title"><span id="pv-title">Meeting</span><button type="button" id="pv-x" class="icon-btn" aria-label="Close"><svg class="ic small"><use href="#i-close"/></svg></button></div>
+    <div class="pv-stage">
+      <video id="pv-video" autoplay muted playsinline hidden></video>
+      <div id="pv-avatar" class="pv-avatar">S</div>
+      <button type="button" id="pv-bg" class="pv-bg"><svg class="ic small"><use href="#i-grid"/></svg> Backgrounds</button>
+    </div>
+    <div class="pv-selects">
+      <label>Microphone <select id="pv-mic"></select></label>
+      <label>Camera <select id="pv-cam"></select></label>
+    </div>
+    <p id="pv-note" class="muted"></p>
+    <div class="pv-foot">
+      <label class="check"><input type="checkbox" id="pv-always" checked /> Always show this preview when joining</label>
+      <button type="button" id="pv-go" class="primary">Start</button>
+    </div>
+  </dialog>
+
+  <dialog id="mute-dialog" class="small-dlg">
+    <form id="mute-form" method="dialog">
+      <h2>Mute all current and new participants</h2>
+      <label class="check"><input type="checkbox" id="mute-allow" checked /> Allow participants to unmute themselves</label>
+      <div class="row end"><button type="submit" id="mute-yes" class="primary">Yes</button><button type="button" id="mute-no" class="outline">No</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="audio-test" class="small-dlg">
+    <div class="done">
+      <h2>Test speaker &amp; microphone</h2>
+      <p class="muted">Press play: you should hear a short tone. Then speak: the bar should move.</p>
+      <div class="row"><button id="at-play" class="primary" type="button">Play test sound</button></div>
+      <div class="meter"><div id="at-level"></div></div>
+      <p id="at-note" class="error" role="alert"></p>
+      <div class="row end"><button id="at-close" class="outline" type="button">Close</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="profile-dialog" class="small-dlg">
+    <form id="profile-form">
+      <h2>My profile</h2>
+      <p class="muted" id="p-account"></p>
+      <label>Name shown in meetings <input id="p-name" maxlength="32" autocomplete="nickname" /></label>
+      <div class="pic-row">
+        <span id="p-pic" class="pav big"></span>
+        <label class="secondary file-btn">Choose picture<input id="p-file" type="file" accept="image/*" hidden /></label>
+        <button type="button" id="p-pic-clear" class="outline">Remove</button>
+      </div>
+      <p class="muted">Your picture shows on your tile and in the participant list. A host can hide everyone's pictures. It stays in this browser.</p>
+      <div class="row end"><button type="submit" class="primary">Save</button><button type="button" id="p-cancel" class="outline">Cancel</button></div>
+      <hr class="soft" />
+      <div class="row wrap"><button type="button" id="p-pw" class="secondary">Change password</button><button type="button" id="p-outall" class="secondary">Sign out of all devices</button><button type="button" id="p-delete" class="secondary danger-text">Delete my account</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="pw-dialog" class="small-dlg">
+    <form id="pw-form" novalidate>
+      <h2>Change password</h2>
+      <label class="fld">Current password<input id="pw-cur" type="password" autocomplete="current-password" /></label>
+      <label class="fld">New password<input id="pw-new" type="password" autocomplete="new-password" /></label>
+      <label class="fld">Confirm new password<input id="pw-new2" type="password" autocomplete="new-password" /></label>
+      <p class="err" id="pw-err" role="alert"></p>
+      <p class="muted">Changing your password signs you out on every other device.</p>
+      <div class="row end"><button type="submit" class="primary">Change password</button><button type="button" id="pw-cancel" class="outline">Cancel</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="pwlist-dialog" class="tall-dlg">
+    <div class="dlg-top"><span>Password list</span><button type="button" id="pl-close" class="icon-btn" aria-label="Close"><svg class="ic small"><use href="#i-close"/></svg></button></div>
+    <p class="muted" id="pl-note">The passwords people chose here, kept in a separate encrypted file (<code>data\vault</code>). Only you can see this page. Give a password back only to its owner, in person.</p>
+    <div class="ac-wrap"><table class="ac-table"><thead><tr><th>Username</th><th>Name</th><th>Password</th><th></th></tr></thead><tbody id="pl-body"></tbody></table></div>
+    <div class="row"><a id="pl-download" class="secondary btn-like" href="/api/admin/passwords.txt" download="sanwes-passwords.txt">Download the list (.txt)</a></div>
+    <p class="err" id="pl-err" role="alert"></p>
+  </dialog>
+  <dialog id="accounts-dialog" class="tall-dlg">
+    <div class="dlg-top"><span>Accounts on this computer</span><button type="button" id="ac-close" class="icon-btn" aria-label="Close"><svg class="ic small"><use href="#i-close"/></svg></button></div>
+    <p class="muted">You are the administrator. People who forgot their password ask you here: open the <b>Password list</b>, or set a new one with Reset password.</p>
+    <div class="row"><button type="button" id="ac-pwlist" class="primary">Password list</button></div>
+    <div class="ac-wrap"><table class="ac-table"><thead><tr><th>Username</th><th>Name</th><th>Email</th><th>Role</th><th>Last sign-in</th><th></th></tr></thead><tbody id="ac-body"></tbody></table></div>
+    <p class="err" id="ac-err" role="alert"></p>
+  </dialog>
+
+  <dialog id="create">
+    <form id="create-form">
+      <h2>New Game Hub or hangout</h2>
+      <label>Name <input id="c-title" maxlength="48" required placeholder="e.g. Team standup" /></label>
+      <label>Type
+        <select id="c-type">
+          <option value="meeting">Meeting: video call with host controls</option>
+          <option value="hangout">Hangout: voice / video chat</option>
+          <option value="game">Game Hub: stream a game, others watch and can ask to play</option>
+        </select>
+      </label>
+      <label id="c-game-l">Game <input id="c-game" maxlength="48" placeholder="e.g. GTA V" /></label>
+      <label class="check"><input type="checkbox" id="c-waiting" /> Waiting room: the host admits each person</label>
+      <label>Passcode (optional) <input id="c-passcode" maxlength="32" autocomplete="off" placeholder="people need it to join" /></label>
+      <label>Cover image (logo / artwork) <input id="c-cover" type="file" accept="image/*" /></label>
+      <img id="c-preview" alt="" hidden />
+      <input id="c-password" type="password" placeholder="Server password" autocomplete="off" hidden />
+      <p id="c-error" class="error" role="alert"></p>
+      <div class="row"><button type="submit" class="primary">Create and join</button><button type="button" id="c-cancel" class="secondary">Cancel</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="settings">
+    <form method="dialog">
+      <div class="set-layout">
+        <nav class="set-nav" aria-label="Settings categories">
+          <h2>Settings</h2>
+          <button type="button" data-sec="general"><svg class="ic small"><use href="#i-bell"/></svg> General</button>
+          <button type="button" data-sec="video"><svg class="ic small"><use href="#i-cam"/></svg> Video &amp; effects</button>
+          <button type="button" data-sec="audio"><svg class="ic small"><use href="#i-mic"/></svg> Audio</button>
+          <button type="button" data-sec="display"><svg class="ic small"><use href="#i-grid"/></svg> Display &amp; controls</button>
+          <button type="button" data-sec="rec"><svg class="ic small"><use href="#i-rec"/></svg> Recording</button>
+          <button type="button" data-sec="share"><svg class="ic small"><use href="#i-share"/></svg> Share screen</button>
+          <button type="button" data-sec="stats"><svg class="ic small"><use href="#i-info"/></svg> Statistics</button>
+        </nav>
+        <div class="set-body">
+          <section data-sec="general" hidden>
+            <h3>Meeting reminders</h3>
+            <p class="set-note">SanWe's reminds you before the meetings you scheduled, while SanWe's is open in a browser tab. The calendar file from <b>Outlook / .ics</b> carries the same alarms for when it is closed.</p>
+            <div class="field-title">Remind me before an upcoming meeting:</div>
+            <div id="rem-defaults" class="chips"></div>
+            <label class="check"><input type="checkbox" id="rem-sound" /> Play a sound</label>
+            <label class="check"><input type="checkbox" id="rem-desktop" /> Show a desktop notification when SanWe's is in the background</label>
+            <p id="rem-note" class="muted"></p>
+            <div><button type="button" id="rem-test" class="secondary">Send a test reminder</button></div>
+          </section>
+          <section data-sec="video" hidden>
+            <h3>Video &amp; effects</h3>
+            <label>Camera <select id="sel-videoinput"></select></label>
+            <label>Camera background <select id="sel-bg"></select></label>
+          </section>
+          <section data-sec="audio" hidden>
+            <h3>Audio</h3>
+            <label>Microphone <select id="sel-audioinput"></select></label>
+            <label id="lbl-audiooutput">Speaker <select id="sel-audiooutput"></select></label>
+            <label class="check"><input type="checkbox" id="chk-noise" /> AI noise suppression (removes keyboard, fans, background noise)</label>
+          </section>
+          <section data-sec="display" hidden>
+            <h3>Display &amp; controls</h3>
+            <label class="check"><input type="checkbox" id="chk-preview" /> Always show the video preview before I start or join a meeting</label>
+          </section>
+          <section data-sec="rec" hidden>
+            <h3>Recording</h3>
+            <p class="set-note">Recording is stored on this computer only: when you stop, the video file goes to your browser's Downloads folder. Everyone in the meeting is told when you record.</p>
+            <h3>Files to record</h3>
+            <label class="check"><input type="checkbox" id="ro-video" /> Video with sound (MP4)</label>
+            <label class="check"><input type="checkbox" id="ro-videoonly" /> Video only, no sound (MP4)</label>
+            <label class="check"><input type="checkbox" id="ro-audio" /> Audio only (M4A, everything that was said)</label>
+            <label class="check"><input type="checkbox" id="ro-each" /> A separate sound file for each participant (M4A, in an "Audio Record" folder)</label>
+            <p id="ro-note" class="muted"></p>
+            <h3>In my recordings:</h3>
+            <label class="check"><input type="checkbox" id="rs-names" /> Show participants' names</label>
+            <label class="check"><input type="checkbox" id="rs-time" /> Include timestamp</label>
+            <label class="check"><input type="checkbox" id="rs-share" /> Record video during screen sharing</label>
+            <label class="check"><input type="checkbox" id="rs-side" /> Show video and screen share side-by-side</label>
+          </section>
+          <section data-sec="share" hidden>
+            <h3>Share screen</h3>
+            <label>Preset <select id="sel-share"></select></label>
+            <div class="two">
+              <label>Resolution <select id="sel-res"></select></label>
+              <label>Frame rate <select id="sel-fps"></select></label>
+            </div>
+            <label>Optimize for <select id="sel-hint"></select></label>
+            <div class="two">
+              <label>Video format <select id="sel-codec"></select></label>
+              <label>Video bitrate <select id="sel-vbr"></select></label>
+            </div>
+            <label>Shared sound <select id="sel-saudio"></select></label>
+            <label>Shared sound volume <select id="sel-boost"></select></label>
+            <p class="muted" id="share-note"></p>
+          </section>
+          <section data-sec="stats" hidden>
+            <h3>Statistics</h3>
+            <pre id="health" class="muted">measuring…</pre>
+          </section>
+          <p id="settings-note" class="muted"></p>
+          <div class="set-foot"><button value="close" class="primary">Done</button></div>
+        </div>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="reminders" class="reminders" popover="manual" aria-live="polite"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
