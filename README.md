@@ -144,7 +144,7 @@ Secrets live only in `.env`, `livekit.yaml` and `data/`, all ignored by git; set
 ## Credits and licences
 Built with [LiveKit](https://livekit.io), Express, Vite, Electron and MediaPipe; the full list is in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). SanWe's is not affiliated with Zoom, AnyDesk, UltraViewer or Parsec; those names only describe what was studied.
 
-**Developed by Santhosh A — SanStudio.** MIT licence, see [LICENSE](LICENSE). Contributions welcome: [CONTRIBUTING.md](CONTRIBUTING.md).
+**Developed by Santhosh A — SanStudio [ https://a-santhosh-hub.github.io/in/# ].** MIT licence, see [LICENSE](LICENSE). Contributions welcome: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
 
