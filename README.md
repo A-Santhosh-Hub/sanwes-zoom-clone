@@ -147,6 +147,8 @@ Built with [LiveKit](https://livekit.io), Express, Vite, Electron and MediaPipe;
 **Developed by Santhosh A — SanStudio [ https://a-santhosh-hub.github.io/in/# ].** MIT licence, see [LICENSE](LICENSE). Contributions welcome: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ---
+# Now Working 05-11-2026
+---
 
 ### Repository settings (copy these into GitHub → About)
 - **Name:** `sanwes-zoom-clone`
